@@ -1,14 +1,27 @@
+/**
+ * @file proxim.c
+ * @brief Programa para medir la distancia utilizando un sensor de proximidad HC-SR04.
+ */
+
 #include <stdio.h>
 #include "pico/stdlib.h"
 
-#define TRIG_PIN 15
-#define ECHO_PIN 14 // Asumí que el ECHO está en un pin diferente
+#define TRIG_PIN 15 ///< Pin de TRIG en la Raspberry Pi Pico.
+#define ECHO_PIN 14 ///< Pin de ECHO en la Raspberry Pi Pico.
 
+/**
+ * @brief Espera un número específico de microsegundos.
+ * @param us El número de microsegundos a esperar.
+ */
 void busy_wait_us_accurate(uint32_t us) {
     uint32_t start = time_us_32();
     while (time_us_32() - start < us);
 }
 
+/**
+ * @brief Punto de entrada del programa.
+ * @return 0 si el programa se ejecuta correctamente.
+ */
 int main() {
     stdio_init_all();
     gpio_init(TRIG_PIN);

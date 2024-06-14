@@ -1,9 +1,17 @@
+/**
+ * @file access_sys.c
+ * @brief Programa para controlar la dirección de un motor DC.
+ */
+
 #include "pico/stdlib.h"
 
-#define IN1 5
-#define IN2 6
-#define EN 4
+#define IN1 5 ///< Pin de entrada 1 para el controlador del motor.
+#define IN2 6 ///< Pin de entrada 2 para el controlador del motor.
+#define EN 4  ///< Pin de habilitación para el controlador del motor.
 
+/**
+ * @brief Configura los pines GPIO y habilita el motor.
+ */
 void setup() {
     // Inicializa el subsistema de entrada/salida estándar
     stdio_init_all();
@@ -22,6 +30,10 @@ void setup() {
     gpio_put(EN, 1);
 }
 
+/**
+ * @brief Cambia la dirección del motor.
+ * @param direction La dirección del motor. Verdadero para una dirección, falso para la otra.
+ */
 void change_direction(bool direction) {
     if (direction) {
         gpio_put(IN1, 1);
@@ -32,6 +44,10 @@ void change_direction(bool direction) {
     }
 }
 
+/**
+ * @brief Punto de entrada del programa.
+ * @return 0 si el programa se ejecuta correctamente.
+ */
 int main() {
     setup();
     
